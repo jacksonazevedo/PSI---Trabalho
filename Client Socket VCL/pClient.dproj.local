@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/07/25 15:24:33.000.066,=C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/25 15:28:20.000.402,C:\Repositorio\Simulador Hardware\Client Socket\uMain.pas=C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/25 15:28:20.000.402,C:\Repositorio\Simulador Hardware\Client Socket\uMain.dfm=C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/07/25 15:28:32.000.415,C:\Repositorio\Simulador Hardware\Client Socket\pClient.dproj=C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

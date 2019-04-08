@@ -1,0 +1,95 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Win.ScktComp, Vcl.StdCtrls,
+  Vcl.CustomizeDlg, Vcl.ComCtrls;
+
+type
+  TForm1 = class(TForm)
+    ClientSocket1: TClientSocket;
+    grpConectar: TGroupBox;
+    btnConectar: TButton;
+    edtIP: TEdit;
+    grpEnviar: TGroupBox;
+    edtComando: TEdit;
+    btnEnviar: TButton;
+    grpReceber: TGroupBox;
+    lstRecebeCMD: TListBox;
+    edtPorta: TEdit;
+    lblIP: TLabel;
+    lblPorta: TLabel;
+    StatusBar1: TStatusBar;
+    procedure btnConectarClick(Sender: TObject);
+    procedure ClientSocket1Read(Sender: TObject; Socket: TCustomWinSocket);
+    procedure ClientSocket1Connect(Sender: TObject; Socket: TCustomWinSocket);
+    procedure ClientSocket1Disconnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure btnEnviarClick(Sender: TObject);
+    procedure ClientSocket1Error(Sender: TObject; Socket: TCustomWinSocket;
+      ErrorEvent: TErrorEvent; var ErrorCode: Integer);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnConectarClick(Sender: TObject);
+begin
+  ClientSocket1.Port := StrToInt(edtPorta.Text);
+  ClientSocket1.Host := edtIP.Text;
+  ClientSocket1.Active := true;
+end;
+
+procedure TForm1.btnEnviarClick(Sender: TObject);
+begin
+  ClientSocket1.Socket.SendText((edtComando.Text));
+end;
+
+procedure TForm1.ClientSocket1Connect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+
+  btnConectar.Caption := 'Desconectar';
+  grpEnviar.Visible := true;
+   StatusBar1.Panels[1].Text:=('Conectado');
+end;
+
+procedure TForm1.ClientSocket1Disconnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  grpEnviar.Visible := false;
+  btnConectar.Caption := 'Conectar';
+  StatusBar1.Panels[1].Text:=('Desconectado');
+end;
+
+procedure TForm1.ClientSocket1Error(Sender: TObject; Socket: TCustomWinSocket;
+  ErrorEvent: TErrorEvent; var ErrorCode: Integer);
+begin
+  // ShowMessage(IntToStr(ErrorCode));
+  case ErrorCode of
+    10061:
+      begin
+        ShowMessage('Hey não conseguimos conectar :('+#13+'Error Code: '+IntToStr(ErrorCode));
+      end;
+
+  end;
+  ErrorCode:=0;
+end;
+
+procedure TForm1.ClientSocket1Read(Sender: TObject; Socket: TCustomWinSocket);
+begin
+  lstRecebeCMD.Items.Add(String(Socket.ReceiveText));
+end;
+
+end.

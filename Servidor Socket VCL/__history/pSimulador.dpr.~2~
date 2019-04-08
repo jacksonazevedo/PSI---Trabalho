@@ -1,0 +1,15 @@
+program pSimulador;
+
+uses
+  Vcl.Forms,
+  uMain in 'uMain.pas' {fMain},
+  uConexao in 'uConexao.pas' {fConexao};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfMain, fMain);
+  Application.Run;
+end.

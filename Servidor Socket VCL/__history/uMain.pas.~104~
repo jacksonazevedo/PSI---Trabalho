@@ -1,0 +1,107 @@
+unit uMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.CheckLst,
+  System.Win.ScktComp, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ToolWin, Vcl.JumpList,
+  Vcl.OleCtnrs, Vcl.Grids, Vcl.Outline, VclTee.TeeGDIPlus, VclTee.TeeProcs,
+  VclTee.TeeDraw3D;
+
+type
+  TfMain = class(TForm)
+    ServerSocket1: TServerSocket;
+    btnStartServidor: TButton;
+    Memo1: TMemo;
+    Edit1: TEdit;
+    Button2: TButton;
+    edtPorta: TEdit;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    Button1: TButton;
+    procedure btnStartServidorClick(Sender: TObject);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure Button2Click(Sender: TObject);
+    procedure ServerSocket1ClientConnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientDisconnect(Sender: TObject; Socket: TCustomWinSocket);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fMain: TfMain;
+  sckt: TCustomWinSocket;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfMain.btnStartServidorClick(Sender: TObject);
+begin
+  if edtPorta.Text <> '' then
+  begin
+    fMain.ServerSocket1.Port := StrToInt(edtPorta.Text);
+    if not fMain.ServerSocket1.Active then
+    begin
+      fMain.ServerSocket1.Open;
+      btnStartServidor.Caption := 'Parar Servidor';
+    end
+    else
+    begin
+      fMain.ServerSocket1.close;
+      btnStartServidor.Caption := 'Iniciar Servidor';
+    end;
+  end
+  else
+    ShowMessage('Preencha a porta!');
+
+end;
+
+procedure TfMain.Button2Click(Sender: TObject);
+begin
+  // ServerSocket1.Socket.Connections[0].SendText(Edit1.Text);
+  try
+    sckt.SendText(Edit1.Text);
+  except
+    ShowMessage('Não houve solicitação!');
+  end;
+
+end;
+
+procedure TfMain.ServerSocket1ClientConnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  Memo1.Lines.Add('Conectado: ' + Socket.RemoteHost);
+  Button2.Enabled := True;
+  GroupBox2.Visible := True;
+end;
+
+procedure TfMain.ServerSocket1ClientDisconnect(Sender: TObject; Socket: TCustomWinSocket);
+begin
+if ServerSocket1.Socket.ActiveConnections = 0 then
+  begin
+    GroupBox2.Visible := false;
+    Button2.Enabled := false;
+  end;
+end;
+
+procedure TfMain.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+var
+  str: string;
+begin
+  str := Socket.ReceiveText;
+  Memo1.Lines.Add(str);
+  sckt := Socket;
+
+end;
+
+end.

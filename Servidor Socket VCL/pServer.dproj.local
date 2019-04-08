@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/07/25 13:45:14.000.334,=C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/25 13:52:32.000.765,C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Repositorio\Simulador Hardware\uMain.dfm</Transaction>
+    <Transaction>2018/07/25 13:52:32.000.765,C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Repositorio\Simulador Hardware\uMain.pas</Transaction>
+    <Transaction>2018/07/25 13:52:52.000.898,C:\Users\jackson.silva\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Repositorio\Simulador Hardware\pSimulador.dproj</Transaction>
+    <Transaction>2018/07/25 15:29:39.000.179,=C:\Repositorio\Simulador Hardware\Unit2.pas</Transaction>
+    <Transaction>2018/07/25 15:29:52.000.863,C:\Repositorio\Simulador Hardware\Unit2.dfm=C:\Repositorio\Simulador Hardware\uConexao.dfm</Transaction>
+    <Transaction>2018/07/25 15:29:52.000.863,C:\Repositorio\Simulador Hardware\Unit2.pas=C:\Repositorio\Simulador Hardware\uConexao.pas</Transaction>
+    <Transaction>2019/04/05 10:46:00.000.923,C:\Instituto Transire\Repositorio\Prototipos\Simulador Hardware\uConexao.pas=</Transaction>
+    <Transaction>2019/04/05 10:50:50.000.718,C:\Instituto Transire\Repositorio\Prototipos\Simulador Hardware\pServer.dproj=C:\Instituto Transire\Repositorio\Prototipos\Simulador Hardware\pSimulador.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
